@@ -1,0 +1,63 @@
+{
+  "name": "napoleon.nvim",
+  "author": "wallpants",
+  "type": "module",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Use Neovim in your browser",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wallpants/napoleon.nvim.git"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "body-max-line-length": [
+        0
+      ]
+    }
+  },
+  "scripts": {
+    "commit": "cz",
+    "format": "prettier **/*.{md,ts} -w",
+    "logs": "bunvim logs napoleon",
+    "typecheck": "tsc",
+    "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
+    "check": "bun run typecheck && bun run lint",
+    "start": "bun run app/index.ts"
+  },
+  "dependencies": {
+    "bunvim": "1.1.7",
+    "minimatch": "^9.0.4",
+    "ollama": "^0.5.1",
+    "valibot": "^0.31.0-rc.1"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/cz-commitlint": "^19.2.0",
+    "@types/bun": "latest",
+    "@types/eslint": "^8.56.10",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "commitizen": "^4.3.0",
+    "commitlint": "^19.3.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "semantic-release": "^23.1.1",
+    "typescript": "^5.4.5"
+  }
+}
