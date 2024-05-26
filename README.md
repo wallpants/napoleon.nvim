@@ -7,6 +7,8 @@
 
 Powered by [Bunvim](https://github.com/wallpants/bunvim).
 
+https://github.com/wallpants/napoleon.nvim/assets/47203170/ffdeede8-8227-433c-a266-caa045d40f85
+
 Conversation is lost when the buffer is deleted.
 
 The purpose of this plugin is to have short conversations to
