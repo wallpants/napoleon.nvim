@@ -43,7 +43,7 @@
     "bunvim": "1.1.7",
     "minimatch": "^9.0.4",
     "ollama": "^0.5.1",
-    "valibot": "^0.31.0-rc.1"
+    "valibot": "^0.31.0-rc.5"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.2.2",
