@@ -29,7 +29,7 @@ export function onNapoleonSend(app: Napoleon) {
             messages: messages.map((m) => ({ ...m, content: m.content.join("\n") })),
             stream: true,
             options: {
-               temperature: 0.3,
+               temperature: app.config.temperature,
             },
          });
 
