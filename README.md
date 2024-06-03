@@ -20,6 +20,7 @@ resolve a doubt and get back to work.
 
 1. [Bun](https://bun.sh)
 2. [Neovim](https://neovim.io)
+3. [Ollama](https://www.ollama.com/)
 
 ## 📦 Installation
 
@@ -31,6 +32,14 @@ Using <a href="https://github.com/folke/lazy.nvim">lazy.nvim</a>
    opts = {
       model = "llama3:latest",
       temperature = 0.3,
+
+      -- optional
+      -- this message is not displayed, but it's sent
+      -- as the first message of the conversation
+      initial_message = {
+        role = "system",
+        message = "You're an assistant embedded in a code editor."
+    }
    },
    config = function(_, opts)
       local napoleon = require("napoleon")

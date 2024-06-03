@@ -2,7 +2,7 @@ import ollama from "ollama";
 import { type Napoleon } from "./napoleon";
 import { type CustomEvents } from "./types.ts";
 
-type Role = "user" | "assistant";
+type Role = "user" | "assistant" | "system";
 type Message = { role: Role | ""; content: string[] };
 
 const NOTIFICATION = "send";
@@ -22,7 +22,16 @@ export function onNapoleonSend(app: Napoleon) {
 
          const initialLines = await app.nvim.call("nvim_buf_get_lines", [app.buffer, 0, -1, true]);
 
-         const messages = parseMessages(initialLines);
+         const messages: Message[] = (
+            app.config.initial_message
+               ? [
+                    {
+                       role: app.config.initial_message.role,
+                       content: [app.config.initial_message.message],
+                    } as Message,
+                 ]
+               : []
+         ).concat(parseMessages(initialLines));
 
          const response = await ollama.chat({
             model: app.config.model,

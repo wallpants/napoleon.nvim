@@ -4,8 +4,13 @@
 
 ---@class napoleon_config
 ---@field model string
----@field temperature number | nil
+---@field temperature number
+---@field initial_message nil | initial_message
 ---@field log_level nil | "verbose" | "debug"
 
 ---@class napoleon_props
 ---@field config napoleon_config
+
+---@class initial_message
+---@field role "user" | "assitant" | "system"
+---@field message string
