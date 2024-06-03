@@ -1,18 +1,27 @@
 local M = {}
 
----@type napoleon_config
-M.value = {
-   model = "llama3",
-   temperature = 0.3,
-
-   -- for debugging
-   -- nil | "debug" | "verbose"
-   log_level = nil,
-}
+M.value = {}
 
 M.validate = function()
    vim.validate({
       model = { M.value.model, "string" },
+      initial_message = {
+         M.value.initial_message,
+         function(var)
+            local is_nil = type(var) == "nil"
+            if is_nil then
+               return true
+            end
+            local is_table = type(var) == "table"
+            if not is_table then
+               return false
+            end
+            local valid_role = (type(var.role) == "string") and ((var.role == "user") or (var.role == "assistant") or (var.role == "system"))
+            local valid_message = (type(var.message) == "string")
+            return is_nil or (valid_role and valid_message)
+         end,
+         "nil or { role: 'user' | 'assistant' | 'system', message: string }",
+      },
       temperature = {
          M.value.temperature,
          function(var)

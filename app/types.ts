@@ -1,10 +1,16 @@
 import { type BaseEvents } from "bunvim";
-import { array, number, object, string, type InferOutput } from "valibot";
+import { array, literal, number, object, optional, string, union, type InferOutput } from "valibot";
 
 export const PluginPropsSchema = object({
    config: object({
       model: string(),
       temperature: number(),
+      initial_message: optional(
+         object({
+            role: union([literal("system"), literal("user"), literal("assistant")]),
+            message: string(),
+         }),
+      ),
    }),
 });
 export type PluginProps = InferOutput<typeof PluginPropsSchema>;
