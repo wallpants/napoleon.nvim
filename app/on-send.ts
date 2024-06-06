@@ -22,16 +22,14 @@ export function onNapoleonSend(app: Napoleon) {
 
          const initialLines = await app.nvim.call("nvim_buf_get_lines", [app.buffer, 0, -1, true]);
 
-         const messages: Message[] = (
-            app.config.initial_message
-               ? [
-                    {
-                       role: app.config.initial_message.role,
-                       content: [app.config.initial_message.message],
-                    } as Message,
-                 ]
-               : []
-         ).concat(parseMessages(initialLines));
+         const messages: Message[] = [];
+         if (app.config.initial_message) {
+            messages.push({
+               role: app.config.initial_message.role,
+               content: app.config.initial_message.message,
+            });
+         }
+         messages.push(...parseMessages(initialLines));
 
          const response = await ollama.chat({
             model: app.config.model,
