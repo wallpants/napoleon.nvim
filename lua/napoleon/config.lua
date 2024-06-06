@@ -12,15 +12,32 @@ M.validate = function()
             if is_nil then
                return true
             end
+
             local is_table = type(var) == "table"
             if not is_table then
                return false
             end
+
             local valid_role = (type(var.role) == "string") and ((var.role == "user") or (var.role == "assistant") or (var.role == "system"))
-            local valid_message = (type(var.message) == "string")
-            return is_nil or (valid_role and valid_message)
+            if not valid_role then
+               return false
+            end
+
+            -- Check if the value is a table
+            if type(var.message) ~= "table" then
+               return false
+            end
+
+            -- Check each element in the table
+            for i, v in ipairs(var) do
+               if type(v) ~= "string" then
+                  return false
+               end
+            end
+
+            return true
          end,
-         "nil or { role: 'user' | 'assistant' | 'system', message: string }",
+         "nil or { role: 'user' | 'assistant' | 'system', message: string[] }",
       },
       temperature = {
          M.value.temperature,

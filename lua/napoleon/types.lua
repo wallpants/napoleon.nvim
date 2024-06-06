@@ -13,4 +13,4 @@
 
 ---@class initial_message
 ---@field role "user" | "assitant" | "system"
----@field message string
+---@field message string[]

@@ -38,8 +38,11 @@ Using <a href="https://github.com/folke/lazy.nvim">lazy.nvim</a>
       -- as the first message of the conversation
       initial_message = {
         role = "system",
-        message = "You're an assistant embedded in a code editor."
-    }
+        message = {
+          "You're an assistant embedded in a code editor.",
+          "Format codeblocks properly and specify the language."
+        }
+      }
    },
    config = function(_, opts)
       local napoleon = require("napoleon")

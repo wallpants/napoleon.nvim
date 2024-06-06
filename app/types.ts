@@ -8,7 +8,7 @@ export const PluginPropsSchema = object({
       initial_message: optional(
          object({
             role: union([literal("system"), literal("user"), literal("assistant")]),
-            message: string(),
+            message: array(string()),
          }),
       ),
    }),
