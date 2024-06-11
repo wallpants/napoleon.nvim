@@ -30,8 +30,9 @@ Using <a href="https://github.com/folke/lazy.nvim">lazy.nvim</a>
 {
    "wallpants/napoleon.nvim",
    opts = {
+      autoscroll = true,
       model = "llama3:latest",
-      temperature = 0.3,
+      temperature = 1,
 
       -- optional
       -- this message is not displayed, but it's sent
