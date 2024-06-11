@@ -1,8 +1,19 @@
 import { type BaseEvents } from "bunvim";
-import { array, literal, number, object, optional, string, union, type InferOutput } from "valibot";
+import {
+   array,
+   boolean,
+   literal,
+   number,
+   object,
+   optional,
+   string,
+   union,
+   type InferOutput,
+} from "valibot";
 
 export const PluginPropsSchema = object({
    config: object({
+      autoscroll: boolean(),
       model: string(),
       temperature: number(),
       initial_message: optional(

@@ -53,7 +53,7 @@ export function onNapoleonSend(app: Napoleon) {
                split,
             ]);
             const buff = await app.nvim.call("nvim_get_current_buf", []);
-            if (buff === app.buffer) {
+            if (buff === app.buffer && app.config.autoscroll) {
                // autoscroll if user is on buffer
                await app.nvim.call("nvim_win_set_cursor", [
                   0,
@@ -70,7 +70,7 @@ export function onNapoleonSend(app: Napoleon) {
             ["", "USER:", "#".repeat(30), ""],
          ]);
          const buff = await app.nvim.call("nvim_get_current_buf", []);
-         if (buff === app.buffer) {
+         if (buff === app.buffer && app.config.autoscroll) {
             // autoscroll if user is on buffer
             const lines = await app.nvim.call("nvim_buf_get_lines", [app.buffer, 0, -1, true]);
             await app.nvim.call("nvim_win_set_cursor", [0, [lines.length, 0]]);

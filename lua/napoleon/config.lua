@@ -4,6 +4,7 @@ M.value = {}
 
 M.validate = function()
    vim.validate({
+      autoscroll = { M.value.autoscroll, "boolean" },
       model = { M.value.model, "string" },
       initial_message = {
          M.value.initial_message,
